@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archana's Birthday ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at bottom, #0d1b2a, #000814);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    color: white;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: background 6s ease;
+}
+
+.pink-glow {
+    background: radial-gradient(circle at bottom, #ff4d6d, #ff99ac, #2b0b18);
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite ease-in-out;
+}
+@keyframes twinkle {
+    0%,100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+.gift {
+    font-size: 70px;
+    cursor: pointer;
+    animation: bounce 1.6s infinite;
+}
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.card {
+    display: none;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    padding: 25px 20px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(255, 77, 109, 0.4);
+    width: 100%;
+    max-width: 350px;
+    animation: pop 0.8s ease;
+    position: relative;
+    z-index: 20;
+}
+@keyframes pop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ff4d6d;
+}
+
+h1 {
+    margin: 12px 0 8px;
+    font-size: 22px;
+    animation: glow 2s infinite alternate;
+}
+@keyframes glow {
+    from { text-shadow: 0 0 8px #ff4d6d; }
+    to { text-shadow: 0 0 25px #ff99ac; }
+}
+
+#text {
+    font-size: 15px;
+    color: #f1f1f1;
+    min-height: 150px;
+    line-height: 1.6;
+}
+
+/* Romantic Cursor */
+.cursor {
+    display: inline-block;
+    margin-left: 3px;
+    color: #ff99ac;
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0%,50%,100% { opacity: 1; }
+    25%,75% { opacity: 0; }
+}
+
+/* Fire Text */
+.fire-text {
+    position: fixed;
+    top: 4%;   /* adjust if needed */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 42px;
+    letter-spacing: 12px;
+    font-weight: 700;
+    font-family: 'Segoe UI', sans-serif;
+
+    background: linear-gradient(
+        90deg,
+        #ffccd5,
+        #ff4d6d,
+        #ffffff,
+        #ff4d6d,
+        #ffccd5
+    );
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 15px rgba(255, 77, 109, 0.7),
+        0 0 30px rgba(255, 153, 172, 0.6),
+        0 0 45px rgba(255, 77, 109, 0.5);
+
+    opacity: 0;
+    z-index: 5;
+
+    animation:
+        shimmer 6s linear infinite,
+        floatGlow 4s ease-in-out infinite;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 300% center; }
+}
+
+/* Floating animation */
+@keyframes floatGlow {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-12px); }
+}
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    animation: fall linear forwards;
+}
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.whisper {
+    font-size: 13px;
+    color: #ffccd5;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+.signature {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #ddd;
+}
+</style>
+</head>
+
+<body>
+
+<div class="gift" onclick="openGift()">🎁</div>
+
+<div class="card" id="card">
+    <img src="akku.jpeg" alt="Ankita">
+    <h1>Ankita ✨</h1>
+
+    <p id="text"></p>
+
+    <div class="whisper"> You are my forever… 💖</div>
+    <div class="signature"> With all my love — Piyush ❤️</div>
+</div>
+
+<div class="fire-text" id="nameFire">- ANKITA -</div>
+
+<audio id="music" src="music o.mp3"></audio>
+
+<script>
+
+for (let i = 0; i < 120; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(star);
+}
+
+function openGift() {
+    document.querySelector('.gift').style.display = "none";
+    document.getElementById('card').style.display = "block";
+    document.getElementById('music').play();
+    typeText();
+    startCelebration();
+}
+
+const message =
+"Happy Birthday, AKKU 💕\n\n" +
+"Ankita… under this sky full of stars,\n" +
+"you shine brighter than them all.\n\n" +
+"Your laughter is my favorite melody,\n" +
+"your love is my safest place.\n\n" +
+"I am lucky to have you.\n" +
+"You are my always and forever.";
+
+let i = 0;
+let typingComplete = false;
+
+function typeText() {
+    const textElement = document.getElementById('text');
+
+    if (!typingComplete) {
+        textElement.innerHTML = textElement.innerHTML.replace(/<span class="cursor">.*?<\/span>/, '');
+
+        if (i < message.length) {
+            const char = message.charAt(i);
+            textElement.innerHTML += char === '\n' ? '<br>' : char;
+            textElement.innerHTML += '<span class="cursor">|</span>';
+            i++;
+
+            setTimeout(typeText, 45 + Math.random() * 60); // softer romantic typing
+        } else {
+            typingComplete = true;
+            textElement.innerHTML = textElement.innerHTML.replace(/<span class="cursor">.*?<\/span>/, '');
+        }
+    }
+}
+
+function startCelebration() {
+    document.body.classList.add("pink-glow");
+    document.getElementById("nameFire").style.opacity = 1;
+
+    setInterval(() => {
+        const conf = document.createElement("div");
+        conf.className = "confetti";
+        conf.style.left = Math.random() * 100 + "vw";
+        conf.style.top = "-10px";
+        conf.style.background = ["#ff4d6d","#ffd60a","#4cc9f0","#ff99ac"][Math.floor(Math.random()*4)];
+        conf.style.animationDuration = (Math.random()*3+3)+"s";
+        document.body.appendChild(conf);
+        setTimeout(()=>conf.remove(),6000);
+    }, 150);
+}
+
+</script>
+
+</body>
+
+</html>
+
+
+
+
